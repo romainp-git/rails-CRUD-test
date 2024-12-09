@@ -1,2 +1,19 @@
-<h1>Movies#show</h1>
-<p>Find me in app/views/movies/show.html.erb</p>
+<div class="container w-75">
+  <div class="row">
+    <div class="col-4 p-0">
+      <%= image_tag "https://image.tmdb.org/t/p/w500/#{@movie.poster_url}", class:"w-100" %>
+    </div>
+    <div class="col-8 p-0">
+      <ul class="list-group">
+        <li class="list-group-item">Titre : <%= @movie.title %></li>
+        <li class="list-group-item">Année : <%= @movie.year %></li>
+        <li class="list-group-item">Réalisateur : <%= @movie.director.name %></li>
+        <li class="list-group-item">Casting : <%= @movie.actors.map(&:name).join(", ") %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>

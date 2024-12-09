@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_09_101313) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_09_161444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "actors", force: :cascade do |t|
-    t.string "firstname"
-    t.string "lastname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "casts", force: :cascade do |t|
@@ -32,10 +31,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_09_101313) do
   end
 
   create_table "directors", force: :cascade do |t|
-    t.string "firstname"
-    t.string "lastname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -45,6 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_09_101313) do
     t.bigint "director_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "poster_url"
     t.index ["director_id"], name: "index_movies_on_director_id"
   end
 
