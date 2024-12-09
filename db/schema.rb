@@ -10,8 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_09_101313) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "actors", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "casts", force: :cascade do |t|
+    t.bigint "actor_id", null: false
+    t.bigint "movie_id", null: false
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actor_id"], name: "index_casts_on_actor_id"
+    t.index ["movie_id"], name: "index_casts_on_movie_id"
+  end
+
+  create_table "directors", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.integer "year"
+    t.string "genre"
+    t.bigint "director_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["director_id"], name: "index_movies_on_director_id"
+  end
+
+  add_foreign_key "casts", "actors"
+  add_foreign_key "casts", "movies"
+  add_foreign_key "movies", "directors"
 end
